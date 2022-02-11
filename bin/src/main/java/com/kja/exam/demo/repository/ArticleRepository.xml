@@ -3,6 +3,7 @@
 
 <mapper
 	namespace="com.kja.exam.demo.repository.ArticleRepository">
+
 	<insert id="writeArticle">
 		INSERT INTO article
 		SET regDate = NOW(),
