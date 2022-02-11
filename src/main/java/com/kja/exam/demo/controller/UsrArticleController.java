@@ -32,7 +32,8 @@ public class UsrArticleController {
 	public List<Article> getArticles() {
 		return articleService.getArticles();
 	}
-
+	// http://localhost:8011/usr/article/getArticles
+	
 	
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
@@ -44,8 +45,9 @@ public class UsrArticleController {
 		}
 		return article;
 	}
-	
+	// http://localhost:8011/usr/article/getArticle?id=6
 
+	
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
@@ -75,5 +77,5 @@ public class UsrArticleController {
 		
 		return id + "번 게시물을 수정하였습니다.";
 	}
-	// 액션 메소드 종료
+	// http://localhost:8011/usr/article/doModify?id=1&title=asdasdas&body=asdasd
 }
