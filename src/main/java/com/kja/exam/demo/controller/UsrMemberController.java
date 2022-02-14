@@ -51,6 +51,10 @@ public class UsrMemberController {
 			return "해당 로그인 아이디는 이미 사용중입니다.";
 		}
 		
+		if ( id == -2 ) {
+			return "해당 이름과 이메일은 이미 사용중입니다.";
+		}
+		
 		Member member = memberService.getMemberById(id);
 		
 		return member;
