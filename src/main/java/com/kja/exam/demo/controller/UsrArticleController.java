@@ -34,8 +34,8 @@ public class UsrArticleController {
 		}
 		
 		
-		ResultData writeArticleRd  = articleService.writeArticle(title, body);
-		int id = (int)writeArticleRd.getData1();
+		ResultData<Integer> writeArticleRd  = articleService.writeArticle(title, body);
+		int id = writeArticleRd.getData1();
 		
 		Article article = articleService.getArticle(id);
 
