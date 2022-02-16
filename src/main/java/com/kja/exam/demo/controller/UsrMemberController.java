@@ -60,6 +60,27 @@ public class UsrMemberController {
 	}
 	// http://localhost:8011/usr/member/doJoin?loginId=fpahstiq123&loginPw=sbs123414&name=%EB%B0%95%EC%84%B1%ED%99%94&nickname=%EB%B3%84%EC%9D%B4&cellphoneNo=01020181024&email=fpahstiq123@naver.com
 
+	
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public ResultData<Member> doLogout(HttpSession httpSession) {
+		boolean isLogined = false;
+		
+		if (httpSession.getAttribute("loginedMemberId") == null) {
+			isLogined = true;
+		}
+			
+		if (isLogined) {
+			return ResultData.from("S-1", "이미 로그아웃된 상태입니다.");
+		}
+	
+		httpSession.removeAttribute("loginedMemberId");
+		
+		return ResultData.from("S-2", "로그아웃 되었습니다.");
+
+	}
+		
+	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public ResultData<Member> doLogin(HttpSession httpSession, String loginId, String loginPw) {
