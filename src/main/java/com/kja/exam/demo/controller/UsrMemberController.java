@@ -102,7 +102,7 @@ public class UsrMemberController {
 			return ResultData.from("F-2", "loginPw(을)를 입력해주세요.");
 		}
 
-		Member member = memberService.getMemberLoginById(loginId);
+		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
 			return ResultData.from("F-3", "존재하지 않은 로그인아이디 입니다.");
@@ -117,4 +117,5 @@ public class UsrMemberController {
 		return ResultData.from("S-1", Ut.f("%s님 환영합니다.", member.getNickname()));
 
 	}
+	// http://localhost:8011/usr/member/doLogin?loginId=user1&loginPw=user1
 }

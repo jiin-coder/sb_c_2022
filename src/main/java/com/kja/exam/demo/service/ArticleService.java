@@ -17,8 +17,8 @@ public class ArticleService {
 		this.articleRepository = articleRepository;
 	}
 
-	public ResultData<Integer> writeArticle(String title, String body) {
-		articleRepository.writeArticle(title, body);
+	public ResultData<Integer> writeArticle(int memberId, String title, String body) {
+		articleRepository.writeArticle(memberId, title, body);
 		int id = articleRepository.getLastInsertId();
 		
 		return ResultData.from("S-1",  Ut.f("%d번 게시물이 생성되었습니다.",id), id); 

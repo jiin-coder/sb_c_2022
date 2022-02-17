@@ -41,15 +41,11 @@ public class MemberService {
 		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
 
-	private Member getMemberByLoginId(String loginId) {
+	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}
 
 	public Member getMemberById(int id) {
 		return memberRepository.getMemberById(id);
-	}
-
-	public Member getMemberLoginById(String loginId) {
-		return memberRepository.getMemberByLoginId(loginId);
 	}
 }
