@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,12 +55,13 @@ public class UsrArticleController {
 	}
 	// http://localhost:8011/usr/article/doAdd?title=제목1117&body=1117
 
-	@RequestMapping("/usr/article/getArticles")
-	@ResponseBody
-	public ResultData<List<Article>> getArticles() {
+	@RequestMapping("/usr/article/list")
+	public String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
 
-		return ResultData.from("S-1", "게시물 리스트입니다.", "articles", articles);
+		model.addAttribute("articles", articles);
+		
+		return "usr/article/list";
 	}
 	// http://localhost:8011/usr/article/getArticles
 
