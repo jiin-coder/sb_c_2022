@@ -8,7 +8,20 @@
 <title>메인</title>
 </head>
 <body>
-  <h1>안녕하세요.</h1>
+
+  <h1>게시물 리스트 페이지</h1>
+
+  <header>
+
+    <a href="/">로고</a>
+
+    <ul>
+      <li><a href="/">홈</a></li>
+      <li><a href="/usrarticle/list">리스트</a></li>
+    </ul>
+  </header>
+
+
 
   <hr />
 
@@ -29,9 +42,7 @@
           <td>${article.regDate.substring(2, 16)}</td>
           <td>${article.updateDate.substring(2, 16)}</td>
           <td>${article.memberId}</td>
-          <td>
-            <a href="../article/detail?id=${article.id}">${article.title}</a>
-          </td>
+          <td><a href="../article/detail?id=${article.id}">${article.title}</a></td>
         </tr>
       </c:forEach>
     </tbody>
