@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+##커스텀
+bin/
+
+LOG_PATH_IS_UNDEFINED/
+log/
