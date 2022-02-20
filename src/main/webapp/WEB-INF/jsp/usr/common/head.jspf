@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>${pageTitle}</title>
@@ -25,16 +26,31 @@
 
 </head>
 <body>
-  <h1>${pageTitle} 페이지</h1>
 
   <header>
-    <a href="/">로고</a>
+    <div class="h-20 flex container mx-auto">
+      <a href="/" class="flex items-center px-3"> <span>로고</span>
+      </a>
 
-    <ul>
-      <li><a href="/">홈</a></li>
-      <li><a href="/usr/article/list">리스트</a></li>
-      <li><a href="/usr/member/doLogin">로그인</a></li>
-    </ul>
+      <div class="flex-grow"></div>
+
+      <ul class="flex">
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/"> <span>홈</span>
+        </a></li>
+
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list"> <span>리스트</span>
+        </a></li>
+
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/member/doLogin"> <span>로그인</span>
+        </a></li>
+      </ul>
+    </div>
   </header>
 
+  <section class="mt-5">
+    <div class="container mx-auto px-3">
+      <h1>${pageTitle}페이지</h1>
+    </div>
+  </section>
+  
   <main>

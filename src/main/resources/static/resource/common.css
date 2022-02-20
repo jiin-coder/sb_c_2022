@@ -1,10 +1,22 @@
+/* 폰트 */
 @font-face {
-    font-family: 'GowunDodum-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+		font-family: 'GowunDodum-Regular';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
 }
 
-html > body {
-	font-family: 'GowunDodum-Regular', sans-serif;
+html>body {
+		font-family: 'GowunDodum-Regular', sans-serif;
+}
+
+/* 라이브러리 */
+.table-box-type-1>table {
+		width: 100%;
+}
+
+.table-box-type-1>table th, 
+.table-box-type-1>table td {
+		border: 1px solid black;
+		padding: 10px;
 }
