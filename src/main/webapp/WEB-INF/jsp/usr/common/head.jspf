@@ -6,10 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>${pageTitle}</title>
-<link rel="stylesheet" href="/resource/common.css" />
-<script src="/resource/common.js" defer="defer"></script>
-</head>
 
+
+<!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- 테일윈드 불러오기 -->
+<!-- 노말라이즈, 라이브러리까지 한방에 해결 -->
+<script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+<!-- 사이트 공통 CSS -->
+<link rel="stylesheet" href="/resource/common.css" />
+<!-- 사이트 공통 JS -->
+<script src="/resource/common.js" defer="defer"></script>
+
+</head>
 <body>
   <h1>${pageTitle} 페이지</h1>
 
@@ -20,8 +34,7 @@
       <li><a href="/">홈</a></li>
       <li><a href="/usr/article/list">리스트</a></li>
       <li><a href="/usr/member/doLogin">로그인</a></li>
-      
     </ul>
   </header>
-  
+
   <main>
