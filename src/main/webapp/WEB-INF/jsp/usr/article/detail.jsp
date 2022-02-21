@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <th>작성자</th>
-            <td>${article.memberId}</td>
+            <td>${article.extra__writerName}</td>
           </tr>
           <tr>
             <th>제목</th>

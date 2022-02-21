@@ -12,14 +12,6 @@
 		`body` = #{body}
 	</insert>
 
-
-	<select id="getArticle" resultType="Article">
-		SELECT *
-		FROM article
-		WHERE 1
-		AND id = #{id}
-	</select>
-
 	<select id="getLastInsertId" resultType="int">
 		SELECT LAST_INSERT_ID()
 	</select>
