@@ -55,13 +55,23 @@ public class UsrArticleController {
 	}
 	// http://localhost:8011/usr/article/doAdd?title=제목1117&body=1117
 
+	
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
-
-		model.addAttribute("articles", articles);
 		
+		model.addAttribute("articles", articles);
+
 		return "usr/article/list";
+	}
+	
+	@RequestMapping("/usr/article/detail")
+	public String showDetail(Model model, int id) {
+		Article article = articleService.getArticle(id);
+
+		model.addAttribute("article", article);
+		
+		return "usr/article/detail";
 	}
 	// http://localhost:8011/usr/article/getArticles
 
