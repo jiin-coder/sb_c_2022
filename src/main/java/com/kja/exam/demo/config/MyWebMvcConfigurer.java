@@ -24,8 +24,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
 				.excludePathPatterns("/error");
 		
-		registry.addInterceptor(needLoginInterceptor).addPathPatterns("/usr/article/write")
-		.addPathPatterns("/usr/article/doWrite").addPathPatterns("/usr/article/modify")
+		registry.addInterceptor(needLoginInterceptor).addPathPatterns("/usr/article/add")
+		.addPathPatterns("/usr/article/doAdd").addPathPatterns("/usr/article/modify")
 		.addPathPatterns("/usr/article/doModify").addPathPatterns("/usr/article/doDelete");
 	}
 }
