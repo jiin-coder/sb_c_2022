@@ -3,7 +3,6 @@ package com.kja.exam.demo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,7 +106,7 @@ public class UsrArticleController {
 	// http://localhost:8011/usr/article/doDelete?id=1
 
 	@RequestMapping("/usr/article/modify")
-	public String doModify(HttpServletRequest req, int id) {
+	public String showModify(HttpServletRequest req, Model model, int id) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
@@ -122,6 +121,8 @@ public class UsrArticleController {
 			return rq.historyBackJsOnView(actorCanModifyRd.getMsg());
 		}
 
+		model.addAttribute("article", article);
+		
 		return "usr/article/modify";
 	}
 
