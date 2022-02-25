@@ -11,22 +11,20 @@ import com.kja.exam.demo.util.Ut;
 import lombok.Getter;
 
 public class Rq {
-
 	@Getter
 	private boolean isLogined;
-
 	@Getter
 	private int loginedMemberId;
+
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
-	
+
 	public Rq(HttpServletRequest req, HttpServletResponse resp) {
 		this.req = req;
 		this.resp = resp;
-		this.session = req.getSession();
 
-		HttpSession httpSession = req.getSession();
+		this.session = req.getSession();
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 
@@ -37,28 +35,17 @@ public class Rq {
 
 		this.isLogined = isLogined;
 		this.loginedMemberId = loginedMemberId;
-
 	}
 
 	public void printHistoryBackJs(String msg) {
 		resp.setContentType("text/html; charset=UTF-8");
-		
-		println("<script>");
-
-		if (!Ut.empty(msg)) {
-			println("alert('" + msg + "');");
-		}
-
-		println("history.back();");
-
-		println("</script>");
+		print(Ut.jsHistoryBack(msg));
 	}
 
 	public void print(String str) {
 		try {
 			resp.getWriter().append(str);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -73,6 +60,11 @@ public class Rq {
 
 	public void logout() {
 		session.removeAttribute("loginedMemberId");
-		
+	}
+
+	public String historyBackJsOnView(String msg) {
+		req.setAttribute("msg", msg);
+		req.setAttribute("historyBack", true);
+		return "common/js";
 	}
 }

@@ -28,7 +28,7 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
 	public ResultData<Article> doAdd(HttpServletRequest req, String title, String body) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
+		Rq rq = (Rq) (req.getAttribute("rq"));
 
 		if (Ut.empty(title)) {
 			return ResultData.from("F-1", "title(을)를 입력해주세요.");
@@ -47,26 +47,25 @@ public class UsrArticleController {
 	}
 	// http://localhost:8011/usr/article/doAdd?title=제목1117&body=1117
 
-	
 	@RequestMapping("/usr/article/list")
 	public String showList(HttpServletRequest req, Model model) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
-		
+		Rq rq = (Rq) (req.getAttribute("rq"));
+
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId());
-		
+
 		model.addAttribute("articles", articles);
 
 		return "usr/article/list";
 	}
-	
+
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
-		
+		Rq rq = (Rq) (req.getAttribute("rq"));
+
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
-		
+
 		return "usr/article/detail";
 	}
 	// http://localhost:8011/usr/article/getArticles
@@ -74,8 +73,8 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public ResultData getArticle(HttpServletRequest req, int id) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
-		
+		Rq rq = (Rq) (req.getAttribute("rq"));
+
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
@@ -107,24 +106,42 @@ public class UsrArticleController {
 	}
 	// http://localhost:8011/usr/article/doDelete?id=1
 
+	@RequestMapping("/usr/article/modify")
+	public String doModify(HttpServletRequest req, int id) {
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
+
+		if (article == null) {
+			return rq.historyBackJsOnView(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+		}
+
+		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
+
+		if (actorCanModifyRd.isFail()) {
+			return rq.historyBackJsOnView(actorCanModifyRd.getMsg());
+		}
+
+		return "usr/article/modify";
+	}
+
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public ResultData<Article> doModify(HttpServletRequest req, int id, String title, String body) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
-		
+		Rq rq = (Rq) (req.getAttribute("rq"));
+
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
 			ResultData.from("F-1", Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 		}
-		
+
 		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
-		
-		if ( actorCanModifyRd.isFail() ) {
+		if (actorCanModifyRd.isFail()) {
 			return actorCanModifyRd;
 		}
-		
+
 		return articleService.modifyArticle(id, title, body);
 	}
 	// http://localhost:8011/usr/article/doModify?id=1&title=asdasdas&body=asdasd
