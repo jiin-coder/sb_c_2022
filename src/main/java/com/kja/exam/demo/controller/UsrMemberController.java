@@ -1,7 +1,6 @@
 package com.kja.exam.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,39 +61,35 @@ public class UsrMemberController {
 	}
 	// http://localhost:8011/usr/member/doJoin?loginId=fpahstiq123&loginPw=sbs123414&name=%EB%B0%95%EC%84%B1%ED%99%94&nickname=%EB%B3%84%EC%9D%B4&cellphoneNo=01020181024&email=fpahstiq123@naver.com
 
-	
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public ResultData<Member> doLogout(HttpServletRequest req) {
-		Rq rq = (Rq)req.getAttribute("rq");
-			
-		if (rq.isLogined()) {
-			return ResultData.from("S-1", "이미 로그아웃된 상태입니다.");
-		}
-	
-		rq.logout();
-		
-		return ResultData.from("S-2", "로그아웃 되었습니다.");
+	public String doLogout(HttpServletRequest req) {
+		Rq rq = (Rq) req.getAttribute("rq");
 
+		if (!rq.isLogined()) {
+			return Ut.jsHistoryBack("이미 로그아웃 상태입니다.");
+		}
+		
+		rq.logout();
+
+		return Ut.jsReplace("로그아웃 되었습니다.", "/");
 	}
-	
-	
+
 	@RequestMapping("/usr/member/login")
 	public String showLogin(HttpServletRequest req) {
 		return "usr/member/login";
 	}
-		
-	
+
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
-		
-		Rq rq = (Rq)req.getAttribute("rq");
-		
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그인 되었습니다.");
 		}
-		
+
 		if (Ut.empty(loginId)) {
 			return Ut.jsHistoryBack("loginId(을)를 입력해주세요.");
 		}
@@ -112,10 +107,10 @@ public class UsrMemberController {
 		if (member.getLoginPw().equals(loginPw) == false) {
 			return Ut.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
-		
+
 		rq.login(member);
-		
-		return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()),"/");
+
+		return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/");
 
 	}
 	// http://localhost:8011/usr/member/doLogin?loginId=user1&loginPw=user1
