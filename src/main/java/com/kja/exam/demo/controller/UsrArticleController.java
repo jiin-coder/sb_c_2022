@@ -93,8 +93,8 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(HttpServletRequest req, int id) {
-		Rq rq = (Rq)(req.getAttribute("rq"));
-		
+		Rq rq = (Rq) req.getAttribute("rq");
+
 		if (rq.isLogined() == false) {
 			return Ut.jsHistoryBack("로그인 후 이용해주세요.");
 		}
@@ -102,7 +102,7 @@ public class UsrArticleController {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
-			return Ut.jsHistoryBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+			Ut.jsHistoryBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 		}
 
 		if (article.getMemberId() != rq.getLoginedMemberId()) {
