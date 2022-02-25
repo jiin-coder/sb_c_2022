@@ -13,7 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- 테일윈드 불러오기 -->
-<!-- 노말라이즈, 라이브러리까지 한방에 해결 -->
+<!-- 노말라이즈, 라이브러리까지 해결 -->
 <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
 
 <!-- 폰트어썸 불러오기 -->
@@ -41,8 +41,14 @@
         <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list"> <span>리스트</span>
         </a></li>
 
-        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/member/doLogin"> <span>로그인</span>
-        </a></li>
+        <c:if test="${!rq.isLogined()}">
+          <li><a class="h-full flex px-3 items-center hover:underline" href="/usr/member/login"> <span>로그인</span>
+          </a></li>
+        </c:if>
+        <c:if test="${rq.isLogined()}">
+          <li><a class="h-full flex px-3 items-center hover:underline" href="/usr/member/doLogout"> <span>로그아웃</span>
+          </a></li>
+        </c:if>
       </ul>
     </div>
   </header>
@@ -52,5 +58,5 @@
       <h1>${pageTitle}페이지</h1>
     </div>
   </section>
-  
+
   <main>
