@@ -41,7 +41,10 @@
         <li><a class="h-full flex px-3 items-center  hover:underline" href="/"> <span>홈</span>
         </a></li>
 
-        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list"> <span>리스트</span>
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/write"> <span>작성</span>
+        </a></li>
+        
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list"> <span>게시글</span>
         </a></li>
 
         <c:if test="${!rq.isLogined()}">
