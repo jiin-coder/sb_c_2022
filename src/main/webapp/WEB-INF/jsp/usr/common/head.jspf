@@ -14,7 +14,10 @@
 
 <!-- 테일윈드 불러오기 -->
 <!-- 노말라이즈, 라이브러리까지 해결 -->
-<script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+
+<!-- 데이지 UI-->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@2.2.2/dist/full.css" rel="stylesheet" type="text/css" />
 
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
