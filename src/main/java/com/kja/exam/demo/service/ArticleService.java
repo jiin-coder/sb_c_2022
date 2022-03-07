@@ -40,15 +40,15 @@ public class ArticleService {
 
 		return article;
 	}
-	
+
 	private void updateForPrintData(int actorId, Article article) {
-		if ( article == null ) {
+		if (article == null) {
 			return;
 		}
-		
+
 		ResultData actorCanDeleteRd = actorCanDelete(actorId, article);
 		article.setExtra__actorCanDelete(actorCanDeleteRd.isSuccess());
-		
+
 		ResultData actorCanModifyRd = actorCanModify(actorId, article);
 		article.setExtra__actorCanModify(actorCanModifyRd.isSuccess());
 	}
@@ -77,7 +77,7 @@ public class ArticleService {
 
 		return ResultData.from("S-2", "게시물 수정이 가능합니다.");
 	}
-	
+
 	public ResultData actorCanDelete(int actorId, Article article) {
 		if (article == null) {
 			return ResultData.from("F-1", "권한이 없습니다.");
@@ -88,5 +88,9 @@ public class ArticleService {
 		}
 
 		return ResultData.from("S-2", "게시물 삭제가 가능합니다.");
+	}
+
+	public int getArticlesCount(int boardId) {
+		return articleRepository.getArticlesCount(boardId);
 	}
 }

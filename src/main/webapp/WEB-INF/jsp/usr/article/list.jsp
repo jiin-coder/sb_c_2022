@@ -7,6 +7,9 @@
 
 <section class="mt-5">
   <div class="container mx-auto px-3">
+    <div>
+      게시물 개수 : <div class="badge badge-primary">${articlesCount}</div>건
+    </div>
     <div class="table-box-type-1">
       <table>
         <colgroup>
@@ -32,9 +35,7 @@
               <td>${article.regDate.substring(2, 16)}</td>
               <td>${article.updateDate.substring(2, 16)}</td>
               <td>${article.extra__writerName}</td>
-              <td>
-              <a class="btn-text-link" href="../article/detail?id=${article.id}">${article.title}</a>
-              </td>
+              <td><a class="btn-text-link" href="../article/detail?id=${article.id}">${article.title}</a></td>
             </tr>
           </c:forEach>
         </tbody>
