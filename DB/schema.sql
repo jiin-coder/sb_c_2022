@@ -115,7 +115,7 @@ INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'free1',
-`name` = '공지사항';
+`name` = '자유';
 
 
 # 게시판 테이블에 boardId 칼럼 추가

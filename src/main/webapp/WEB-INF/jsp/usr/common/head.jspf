@@ -43,8 +43,11 @@
 
         <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/write"> <span>작성</span>
         </a></li>
-        
-        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list"> <span>게시글</span>
+
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list?boardId=1"> <span>공지사항</span>
+        </a></li>
+
+        <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list?boardId=2"> <span>자유게시판</span>
         </a></li>
 
         <c:if test="${!rq.isLogined()}">

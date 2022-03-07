@@ -10,26 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kja.exam.demo.service.ArticleService;
+import com.kja.exam.demo.service.BoardService;
+import com.kja.exam.demo.service.BoardService;
 import com.kja.exam.demo.util.Ut;
 import com.kja.exam.demo.vo.Article;
+import com.kja.exam.demo.vo.Board;
 import com.kja.exam.demo.vo.ResultData;
 import com.kja.exam.demo.vo.Rq;
 
 @Controller
 public class UsrArticleController {
-
 	private ArticleService articleService;
-
-	public UsrArticleController(ArticleService articleService) {
+	private BoardService boardService;
+	
+	public UsrArticleController(ArticleService articleService, BoardService boardService) {
 		this.articleService = articleService;
+		this.boardService = boardService;
 	}
-
+	
 	@RequestMapping("/usr/article/list")
-	public String showList(HttpServletRequest req, Model model) {
+	public String showList(HttpServletRequest req, Model model, int boardId) {
+		Board board = boardService.getBoardById(boardId);
+		
 		Rq rq = (Rq) (req.getAttribute("rq"));
 
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId());
 
+		model.addAttribute("board", board);
 		model.addAttribute("articles", articles);
 
 		return "usr/article/list";
