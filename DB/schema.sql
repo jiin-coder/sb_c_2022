@@ -137,3 +137,13 @@ SELECT * FROM article;
 
 SELECT * FROM board WHERE id = 1;
 SELECT * FROM board WHERE id = 2;
+
+# 게시물 대량생성
+INSERT INTO article
+(
+    regDate, updateDate, memberId, boardId, title, `body`
+)
+SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
+FROM article;
+
+SELECT COUNT(*) FROM article;
