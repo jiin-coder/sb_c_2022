@@ -14,21 +14,25 @@
         <tbody>
           <tr>
             <th>작성자</th>
-            <td>
-              ${rq.loginedMember.nickname}
-            </td>
+            <td>${rq.loginedMember.nickname}</td>
+          </tr>
+          <tr>
+            <th>게시판</th>
+            <td><select class="select select-bordered" name="boardId">
+                <option selected disabled>게시판을 선택해주세요.</option>
+                <option value="1">공지</option>
+                <option value="2">자유</option>
+            </select></td>
           </tr>
           <tr>
             <th>제목</th>
-            <td>
-              <input class="w-96 input input-bordered" name="title" type="text" placeholder="제목" />
-            </td>
+            <td><input required="required" class="w-96 input input-bordered" name="title" type="text"
+              placeholder="제목" /></td>
           </tr>
           <tr>
             <th>내용</th>
-            <td>
-              <textarea class="w-full textarea textarea-bordered" name="body" rows="10" placeholder="내용"></textarea>
-            </td>
+            <td><textarea required="required" class="w-full textarea textarea-bordered" name="body" rows="10"
+                placeholder="내용"></textarea></td>
           </tr>
           <tr>
             <th>작성</th>
@@ -40,11 +44,9 @@
         </tbody>
       </table>
     </form>
-    
-    <div class="btns">
-      
-    </div>
+
+    <div class="btns"></div>
   </div>
 </section>
 
-<%@ include file="../common/foot.jspf"%>  
+<%@ include file="../common/foot.jspf"%>
