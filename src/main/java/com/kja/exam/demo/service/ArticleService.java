@@ -24,8 +24,11 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), "id", id);
 	}
 
-	public List<Article> getForPrintArticles(int actorId, int boardId) {
-		List<Article> articles = articleRepository.getForPrintArticles(boardId);
+	public List<Article> getForPrintArticles(int actorId, int boardId, int itemsInAPage, int page) {
+		int limitStart = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
+		
+		List<Article> articles = articleRepository.getArticles(boardId, limitStart, limitTake);
 
 		for (Article article : articles) {
 			updateForPrintData(actorId, article);
