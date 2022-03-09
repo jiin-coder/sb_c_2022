@@ -84,6 +84,7 @@ public class Rq {
 		return "common/js";
 	}
 
+	
 	public String jsHistoryBack(String msg) {
 		return Ut.jsHistoryBack(msg);
 	}
