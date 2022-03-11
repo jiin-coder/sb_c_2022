@@ -50,24 +50,28 @@
         <c:set var="startPage" value="${page - pageMenuArmLen >= 1 ? page - pageMenuArmLen : 1}" />
         <c:set var="endPage" value="${page + pageMenuArmLen <= pagesCount ? page + pageMenuArmLen : pagesCount}" />
 
+        <c:set var="pageBaseUri" value="?boardId=${boardId}" />
+        <c:set var="pageBaseUri" value="${pageBaseUri}&&searchKeywordTypeCode=${param.searchKeywordTypeCode}" />
+        <c:set var="pageBaseUri" value="${pageBaseUri}&&searchKeyword=${param.searchKeyword}" />
+
         <c:if test="${startPage > 1}">
-          <a class="btn btn-sm" href="?page=1&boardId=${boardId}">1</a>
+          <a class="btn btn-sm" href="${pageBaseUri}&page=1">1</a>
           <c:if test="${startPage > 2}">
             <a class="btn btn-sm btn-disabled">...</a>
           </c:if>
         </c:if>
-        
+
         <c:forEach begin="${startPage}" end="${endPage}" var="i">
-          <a class="btn btn-sm ${page == i ? 'btn-active' : ''}" href="?page=${i}&boardId=${boardId}">${i}</a>
+          <a class="btn btn-sm ${page == i ? 'btn-active' : ''}" href="${pageBaseUri}&page=${i}">${i}</a>
         </c:forEach>
-        
+
         <c:if test="${endPage < pagesCount}">
           <c:if test="${endPage < pagesCount - 1}">
             <a class="btn btn-sm btn-disabled">...</a>
           </c:if>
-          <a class="btn btn-sm" href="?page=${pagesCount}&boardId=${boardId}"">${pagesCount}</a>
+          <a class="btn btn-sm" href="${pageBaseUri}&page=${pagesCount}">${pagesCount}</a>
         </c:if>
-      
+
       </div>
     </div>
 
