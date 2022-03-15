@@ -76,7 +76,11 @@ public class UsrArticleController {
 			return increaseHitCountRd;
 		}
 		
-		return ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
+		ResultData<Integer> rd = ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
+		
+		rd.setData2("id", id);
+		
+		return rd;
 	}
 	
 	@RequestMapping("/usr/article/getArticle")
