@@ -138,12 +138,17 @@ SELECT * FROM article;
 SELECT * FROM board WHERE id = 1;
 SELECT * FROM board WHERE id = 2;
 
-# 게시물 대량생성
-INSERT INTO article
+# 게시물 개수 늘리기
+/*
+insert into article
 (
     regDate, updateDate, memberId, boardId, title, `body`
 )
-SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
-FROM article;
+select now(), now(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, concat('제목_', rand()), CONCAT('내용_', RAND())
+from article;
+*/
 
-SELECT COUNT(*) FROM article;
+
+# 게시물 테이블 hitCount 칼럼을 추가
+ALTER TABLE article
+ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
