@@ -12,25 +12,25 @@
 <script>
 	function ArticleDetail__increaseHitCount() {
 		const localStorageKey = 'article__' + params.id + '__viewDone';
-
-		if (localStorage.getItem(localStorageKey)) {
+		
+		if ( localStorage.getItem(localStorageKey) ) {
 			return;
 		}
-
+		
 		localStorage.setItem(localStorageKey, true);
-
+		
 		$.get('../article/doIncreaseHitCountRd', {
 			id : params.id,
-			ajaxMode : 'Y'
+			ajaxMode: 'Y'
 		}, function(data) {
 			$('.article-detail__hit-count').empty().html(data.data1);
 		}, 'json');
 	}
-
+	
 	$(function() {
 		// 실전코드
 		// ArticleDetail__increaseHitCount();
-
+		
 		// 임시코드
 		setTimeout(ArticleDetail__increaseHitCount, 500);
 	})
@@ -64,26 +64,27 @@
           </tr>
           <tr>
             <th>조회</th>
-            <td><span class="badge badge-primary article-detail__hit-count">${article.hitCount}</span></td>
+            <td>
+              <span class="badge badge-primary article-detail__hit-count">${article.hitCount}</span>
+            </td>
           </tr>
           <tr>
             <th>추천</th>
             <td>
-              <div class="flex item-center">
-                 <div class="flex items-center">
+              <div class="flex items-center">
                 <span class="badge badge-primary">${article.goodReactionPoint}</span>
                 <span>&nbsp;</span>
-
+                
                 <c:if test="${actorCanMakeReactionPoint}">
-                  <button class="btn btn-xs btn-primary">
+                  <a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-primary">
                     좋아요
                     👍
-                  </button>
+                  </a>
                   <span>&nbsp;</span>
-                  <button class="btn btn-xs btn-secondary">
+                  <a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-xs btn-secondary">
                     싫어요
                     👎
-                  </button>
+                  </a>
                 </c:if>
               </div>
             </td>
@@ -106,15 +107,10 @@
         <a class="btn btn-link" href="../article/modify?id=${article.id}">게시물 수정</a>
       </c:if>
       <c:if test="${article.extra__actorCanDelete}">
-        <a class="btn btn-link" onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;"
-          href="../article/doDelete?id=${article.id}">게시물 삭제</a>
+        <a class="btn btn-link" onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;" href="../article/doDelete?id=${article.id}">게시물 삭제</a>
       </c:if>
     </div>
   </div>
 </section>
-
-<!--
-<iframe src="http://localhost:8011/usr/article/doIncreaseHitCountRd?id=2" frameborder="0"></iframe>
--->
 
 <%@ include file="../common/foot.jspf"%>

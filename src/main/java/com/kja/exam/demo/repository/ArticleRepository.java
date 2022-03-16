@@ -65,7 +65,8 @@ public interface ArticleRepository {
 			</if>
 			</script>
 			""")
-	public List<Article> getForPrintArticles(int boardId, String searchKeyword, String searchKeywordTypeCode, int limitStart, int limitTake);
+	public List<Article> getForPrintArticles(int boardId, String searchKeyword, String searchKeywordTypeCode,
+			int limitStart, int limitTake);
 
 	public int getLastInsertId();
 
@@ -88,7 +89,7 @@ public interface ArticleRepository {
 					<otherwise>
 						AND (
 							A.title LIKE CONCAT('%', #{searchKeyword}, '%')
-							OR 
+							OR
 							A.body LIKE CONCAT('%', #{searchKeyword}, '%')
 						)
 					</otherwise>
@@ -116,7 +117,22 @@ public interface ArticleRepository {
 			""")
 	public int getArticleHitCount(int id);
 
+	@Update("""
+			<script>
+			UPDATE article
+			SET goodReactionPoint = goodReactionPoint + 1
+			WHERE id = #{id}
+			</script>
+			""")
+	public int increaseGoodReactionPoint(int id);
 
-	
-	
+	@Update("""
+			<script>
+			UPDATE article
+			SET badReactionPoint = badReactionPoint + 1
+			WHERE id = #{id}
+			</script>
+			""")
+	public int increaseBadReactionPoint(int id);
+
 }
