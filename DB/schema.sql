@@ -152,3 +152,62 @@ from article;
 # 게시물 테이블 hitCount 칼럼을 추가
 ALTER TABLE article
 ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+
+# 리액션포인트 테이블
+CREATE TABLE `reactionPoint` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    relTypeCode CHAR(30) NOT NULL COMMENT '관련데이터타입코드',
+    relId INT(10) UNSIGNED NOT NULL COMMENT '관련데이터번호',
+    `point` SMALLINT(2) NOT NULL
+);
+
+
+# 리액션포인트 테스트 데이터
+## 1번 회원이 1번 article 에 대해서 싫어요
+INSERT INTO reactionPoint
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+relTypeCode = 'article',
+relId = 1,
+`point` = -1;
+
+## 1번 회원이 2번 article 에 대해서 좋아요.
+INSERT INTO reactionPoint
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+relTypeCode = 'article',
+relId = 2,
+`point` = 1;
+
+## 2번 회원이 1번 article 에 대해서 싫어요
+INSERT INTO reactionPoint
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+relTypeCode = 'article',
+relId = 1,
+`point` = -1;
+
+## 2번 회원이 2번 article 에 대해서 좋아요
+INSERT INTO reactionPoint
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+relTypeCode = 'article',
+relId = 2,
+`point` = 1;
+
+## 3번 회원이 1번 article 에 대해서 좋아요
+INSERT INTO reactionPoint
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 3,
+relTypeCode = 'article',
+relId = 1,
+`point` = 1;
