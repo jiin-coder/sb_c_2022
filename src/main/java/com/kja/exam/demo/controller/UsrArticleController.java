@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kja.exam.demo.service.ArticleService;
 import com.kja.exam.demo.service.BoardService;
+import com.kja.exam.demo.service.ReactionPointService;
 import com.kja.exam.demo.util.Ut;
 import com.kja.exam.demo.vo.Article;
 import com.kja.exam.demo.vo.Board;
@@ -25,10 +26,12 @@ public class UsrArticleController {
 	private ArticleService articleService;
 	private BoardService boardService;
 	private Rq rq;
+	private ReactionPointService reactionPointService;
 	
-	public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
+	public UsrArticleController(ArticleService articleService, BoardService boardService, ReactionPointService reactionPointService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
+		this.reactionPointService = reactionPointService;
 		this.rq = rq;
 	}
 	
@@ -63,7 +66,7 @@ public class UsrArticleController {
 
 		model.addAttribute("article", article);
 
-		boolean actorCanMakeReactionPoint = articleService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), id);
+		boolean actorCanMakeReactionPoint = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
 		
 		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
 		
