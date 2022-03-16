@@ -28,7 +28,7 @@ public class ArticleService {
 		int limitStart = (page - 1) * itemsInAPage;
 		int limitTake = itemsInAPage;
 		
-		List<Article> articles = articleRepository.getArticles(boardId, searchKeyword, searchKeywordTypeCode, limitStart, limitTake);
+		List<Article> articles = articleRepository.getForPrintArticles(boardId, searchKeyword, searchKeywordTypeCode, limitStart, limitTake);
 
 		for (Article article : articles) {
 			updateForPrintData(actorId, article);
