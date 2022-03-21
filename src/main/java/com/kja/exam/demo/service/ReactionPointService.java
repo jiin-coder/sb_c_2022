@@ -15,12 +15,18 @@ public class ReactionPointService {
 		this.articleService = articleService;
 	}
 
-	public boolean actorCanMakeReactionPoint(int actorId, String relTypeCode, int relId) {
+	public ResultData actorCanMakeReactionPoint(int actorId, String relTypeCode, int relId) {
 		if ( actorId == 0 ) {
-			return false;
+			return ResultData.from("F-1", "로그인 후 이용해주세요.");
 		}
 		
-		return reactionPointRepository.getSumReactionPointByMemberId(relTypeCode, relId, actorId) == 0;
+		int sumReactionPointByMemberId = reactionPointRepository.getSumReactionPointByMemberId(relTypeCode, relId, actorId);
+
+		if ( sumReactionPointByMemberId != 0 ) {
+			return ResultData.from("F-2", "리액션이 불가능합니다.", "sumReactionPointByMemberId", sumReactionPointByMemberId);
+		}
+
+		return ResultData.from("S-1", "리액션이 가능합니다.", "sumReactionPointByMemberId", sumReactionPointByMemberId);
 	}
 
 	public ResultData addGoodReactionPoint(int actorId, String relTypeCode, int relId) {
