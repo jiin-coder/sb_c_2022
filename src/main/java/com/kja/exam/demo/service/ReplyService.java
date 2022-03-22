@@ -26,6 +26,48 @@ public class ReplyService {
 	}
 	
 	public List<Reply> getForPrintReplies(Member actor, String relTypeCode, int relId) {
-		return replyRepository.getForPrintReplies(relTypeCode, relId);
+		List<Reply> replies = replyRepository.getForPrintReplies(relTypeCode, relId);
+
+		for (Reply reply : replies) {
+			updateForPrintData(actor, reply);
+		}
+
+		return replies;
+	}
+
+	private void updateForPrintData(Member actor, Reply reply) {
+		if (reply == null) {
+			return;
+		}
+
+		ResultData actorCanDeleteRd = actorCanDelete(actor, reply);
+		reply.setExtra__actorCanDelete(actorCanDeleteRd.isSuccess());
+
+		ResultData actorCanModifyRd = actorCanModify(actor, reply);
+		reply.setExtra__actorCanModify(actorCanModifyRd.isSuccess());
+	}
+
+	private ResultData actorCanModify(Member actor, Reply reply) {
+		if (actor == null) {
+			return ResultData.from("F-1", "댓글이 존재하지 않습니다.");
+		}
+
+		if (reply.getMemberId() != actor.getId()) {
+			return ResultData.from("F-2", "권한이 없습니다.");
+		}
+
+		return ResultData.from("S-1", "댓글 삭제가 가능합니다.");
+	}
+
+	private ResultData actorCanDelete(Member actor, Reply reply) {
+		if (actor == null) {
+			return ResultData.from("F-1", "댓글이 존재하지 않습니다.");
+		}
+
+		if (reply.getMemberId() != actor.getId()) {
+			return ResultData.from("F-2", "권한이 없습니다.");
+		}
+
+		return ResultData.from("S-1", "댓글 수정이 가능합니다.");
 	}
 }
