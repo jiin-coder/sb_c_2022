@@ -111,4 +111,9 @@ public class UsrMemberController {
 
 	}
 	// http://localhost:8011/usr/member/doLogin?loginId=user1&loginPw=user1
+	
+	@RequestMapping("/usr/member/myPage")
+	public String showMyPage() {
+		return "usr/member/myPage";
+	}
 }
