@@ -150,4 +150,8 @@ public class ArticleService {
 
 		return ResultData.from("S-1", "싫어요 수가 감소되었습니다.", "affectedRowsCount", affectedRowsCount);
 	}
+	
+	public Article getArticle(int id) {
+		return articleRepository.getArticle(id);
+	}
 }
