@@ -88,4 +88,10 @@ public class ReplyService {
 	public Reply getReply(int id) {
 		return replyRepository.getReply(id);
 	}
+
+	public ResultData<Integer> modifyReplyRd(int id, String body) {
+		replyRepository.modifyReply(id, body);
+
+		return ResultData.from("S-1", Ut.f("%d번 댓글을 수정하였습니다.", id));
+	}
 }
