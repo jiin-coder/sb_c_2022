@@ -63,4 +63,14 @@ public class MemberService {
 		attrService.setValue("member", actorId, "extra", "memberModifyAuthKey", memberModifyAuthKey, Ut.getDateStrLater(60 * 5));
 		return memberModifyAuthKey;
 	}
+
+	public ResultData checkMemberModifyAuthKey(int actorId, String memberModifyAuthKey) {
+		String saved = attrService.getValue("member", actorId, "extra", "memberModifyAuthKey");
+		
+		if ( !saved.equals(memberModifyAuthKey)) {
+			return  ResultData.from("F-1", "일치하지 않거나 만료되었습니다.");
+		}
+		
+		return ResultData.from("S-1", "정상적인 코드입니다.");
+	}
 }
