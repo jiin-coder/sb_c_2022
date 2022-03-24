@@ -10,6 +10,12 @@ html>body {
 		font-family: 'GowunDodum-Regular', sans-serif;
 }
 
+html>body, html>body .toastui-editor-contents, html>body .ProseMirror,
+  html>body .toastui-editor-md-code, html>body .toastui-editor-md-code-block
+  {
+		font-family: 'GowunDodum-Regular', sans-serif;
+}
+
 /* 라이브러리 */
 .table-box-type-1>table {
 		width: 100%;
