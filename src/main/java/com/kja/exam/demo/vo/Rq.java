@@ -50,6 +50,11 @@ public class Rq {
 		this.loginedMemberId = loginedMemberId;
 		this.loginedMember = loginedMember;
 	}
+	
+	public void printReplaceJs(String msg, String url) {
+		resp.setContentType("text/html; charset=UTF-8");
+		print(Ut.jsReplace(msg, url));
+	}
 
 	public void printHistoryBackJs(String msg) {
 		resp.setContentType("text/html; charset=UTF-8");
@@ -117,4 +122,5 @@ public class Rq {
 	public void runB() {
 		System.out.println("B 호출됨!");	
 	}
+
 }
