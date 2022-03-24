@@ -32,7 +32,7 @@
 
   <header>
     <div class="h-20 flex container mx-auto">
-      <a href="/" class="flex items-center px-3"> <span>로고</span>
+      <a href="/" class="flex items-center px-3"> <span>Spring is Coming.</span>
       </a>
 
       <div class="flex-grow"></div>
@@ -50,11 +50,11 @@
         <li><a class="h-full flex px-3 items-center  hover:underline" href="/usr/article/list?boardId=2"> <span>자유게시판</span>
         </a></li>
 
-        <c:if test="${!rq.isLogined()}">
-          <li><a class="h-full flex px-3 items-center hover:underline" href="/usr/member/login"> <span>로그인</span>
+        <c:if test="${!rq.logined}">
+          <li><a class="h-full flex px-3 items-center hover:underline" href="${rq.loginUri}"> <span>로그인</span>
           </a></li>
         </c:if>
-        <c:if test="${rq.isLogined()}">
+        <c:if test="${rq.logined}">
           <li><a class="h-full flex px-3 items-center hover:underline" href="/usr/member/myPage"> <span>${rq.loginedMember.nickname}'s
                 Profile</span>
           </a></li>
