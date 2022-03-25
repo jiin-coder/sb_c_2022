@@ -1,6 +1,7 @@
 package com.kja.exam.demo.vo;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,11 +30,14 @@ public class Rq {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
+	private Map<String, String> paramMap;
 
 	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
 		this.resp = resp;
 
+		paramMap = Ut.getParamMap(req);
+		
 		this.session = req.getSession();
 		
 		boolean isLogined = false;
@@ -119,6 +123,16 @@ public class Rq {
 	}
 
 	public String getAfterLoginUri() {
+		String requestUri = req.getRequestURI();
+		
+		switch (requestUri) {
+		case "/usr/member/login":
+		case "/usr/member/join":
+		case "/usr/member/findLoginId":
+		case "/usr/member/findLoginPw":
+			return Ut.getUriEncoded(paramMap.get("afterLoginUri"));
+		}
+		
 		return getEncodedCurrentUri();
 	}
 
