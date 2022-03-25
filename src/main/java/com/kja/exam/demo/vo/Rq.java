@@ -122,9 +122,23 @@ public class Rq {
 		return "../member/login?afterLoginUri=" + getAfterLoginUri();
 	}
 
+	public String getLogoutUri() {
+		String requestUri = req.getRequestURI();
+
+		// 필요하다면 활성화
+		/*
+		switch (requestUri) {
+		case "/usr/article/write":
+			return "";
+		}
+		*/
+		return "../member/doLogout?afterLogoutUri=" + getAfterLogoutUri();
+	}
+	
 	public String getAfterLoginUri() {
 		String requestUri = req.getRequestURI();
 		
+		// 로그인 후 다시 돌아가면 안되는 페이지URL 작성
 		switch (requestUri) {
 		case "/usr/member/login":
 		case "/usr/member/join":
@@ -133,6 +147,10 @@ public class Rq {
 			return Ut.getUriEncoded(Ut.getStrAttr(paramMap, "afterLoginUri", ""));
 		}
 		
+		return getEncodedCurrentUri();
+	}
+	
+	public String getAfterLogoutUri() {
 		return getEncodedCurrentUri();
 	}
 
