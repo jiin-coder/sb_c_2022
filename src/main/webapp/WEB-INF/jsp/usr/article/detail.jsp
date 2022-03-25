@@ -124,7 +124,13 @@ ${article.body}
     </div>
 
     <div class="btns">
-      <button class="btn btn-link" type="button" onclick="history.back();">뒤로가기</button>
+      <c:if test="${empty param.listUri}">
+        <button class="btn btn-link" type="button"
+          onclick="history.back();">뒤로가기</button>
+      </c:if>
+      <c:if test="${not empty param.listUri}">
+        <a class="btn btn-link" href="${param.listUri}">뒤로가기</a>
+      </c:if>
       <c:if test="${article.extra__actorCanModify}">
         <a class="btn btn-link" href="../article/modify?id=${article.id}">게시물 수정</a>
       </c:if>
