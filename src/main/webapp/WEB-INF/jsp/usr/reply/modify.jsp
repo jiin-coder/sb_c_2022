@@ -29,6 +29,7 @@
   <div class="container mx-auto px-3">
     <form class="table-box-type-1" method="POST" action="../reply/doModify"
       onsubmit="ReplyModify__submit(this); return false;">
+      <input type="hidden" name="replaceUri" value="${param.replaceUri}" />
       <input type="hidden" name="id" value="${reply.id}" />
       <table>
         <colgroup>
@@ -77,7 +78,7 @@
             <th>댓글수정</th>
             <td>
               <button type="submit" class="btn btn-primary">댓글수정</button>
-              <button type="button" class="btn btn-secondary btn-outline" onclick="history.back();">뒤로가기</button>
+              <a class="btn btn-secondary btn-outline" href="${param.replaceUri}">뒤로가기</a>
             </td>
           </tr>
         </tbody>
