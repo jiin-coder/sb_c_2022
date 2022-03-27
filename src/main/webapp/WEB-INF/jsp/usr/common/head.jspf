@@ -32,7 +32,7 @@
 
   <header>
     <div class="h-20 flex container mx-auto">
-      <a href="/" class="flex items-center px-3"> <span>Spring is Coming.</span>
+      <a href="/" class="flex items-center px-3"> <span>Spring is Coming. : Dev</span>
       </a>
 
       <div class="flex-grow"></div>
