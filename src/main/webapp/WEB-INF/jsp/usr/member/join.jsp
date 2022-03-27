@@ -114,9 +114,13 @@
 			} else {
 				validLoginId = '';
 			}
+			
+			if (data.resultCode == 'F-B') {
+				alert(data.msg);
+			}
 		}, 'json');
 	}
-	
+
 	const checkLoginIdDupDebounced = _.debounce(checkLoginIdDup, 300);
 </script>
 
