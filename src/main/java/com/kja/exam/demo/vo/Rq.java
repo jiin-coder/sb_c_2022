@@ -95,6 +95,17 @@ public class Rq {
 		return "common/js";
 	}
 
+	public String historyBackJsOnView(String resultCode, String msg) {
+		req.setAttribute("msg", String.format("[%s] %s", resultCode, msg));
+		req.setAttribute("historyBack", true);
+		return "common/js";
+	}
+
+	public String jsHistoryBack(String resultCode, String msg) {
+		msg = String.format("[%s] %s", resultCode, msg);
+		return Ut.jsHistoryBack(msg);
+	}
+	
 	public String jsHistoryBack(String msg) {
 		return Ut.jsHistoryBack(msg);
 	}
@@ -122,6 +133,10 @@ public class Rq {
 		return "../member/login?afterLoginUri=" + getAfterLoginUri();
 	}
 
+	public String getJoinUri() {
+		return "../member/join?afterLoginUri=" + getAfterLoginUri();
+	}
+	
 	public String getLogoutUri() {
 		String requestUri = req.getRequestURI();
 
