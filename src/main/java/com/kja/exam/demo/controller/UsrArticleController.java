@@ -38,6 +38,7 @@ public class UsrArticleController {
 		this.rq = rq;
 	}
 
+	/* 게시물 리스트 page */
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
@@ -65,6 +66,7 @@ public class UsrArticleController {
 		return "usr/article/list";
 	}
 
+	/* 게시글 상세 page */
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
@@ -94,6 +96,7 @@ public class UsrArticleController {
 		return "usr/article/detail";
 	}
 
+	/* 조회수 증가 */
 	@RequestMapping("/usr/article/doIncreaseHitCountRd")
 	@ResponseBody
 	public ResultData<Integer> doIncreaseHitCountRd(int id) {
@@ -111,6 +114,7 @@ public class UsrArticleController {
 		return rd;
 	}
 
+	/* 게시글 탐색 */
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public ResultData<Article> getArticle(int id) {
@@ -123,6 +127,7 @@ public class UsrArticleController {
 		return ResultData.from("S-1", Ut.f("%d번 게시물입니다.", id), "article", article);
 	}
 
+	/* 게시글 삭제 ProcessingUrl */
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
@@ -141,6 +146,7 @@ public class UsrArticleController {
 		return rq.jsReplace(Ut.f("%d번 게시물을 삭제하였습니다.", id), "../article/list");
 	}
 
+	/* 게시글 수정 page */
 	@RequestMapping("/usr/article/modify")
 	public String showModify(Model model, int id) {
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
@@ -160,6 +166,7 @@ public class UsrArticleController {
 		return "usr/article/modify";
 	}
 
+	/* 게시글 수정 ProcessingUrl */
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public String doModify(int id, String title, String body) {
@@ -180,11 +187,14 @@ public class UsrArticleController {
 		return rq.jsReplace(Ut.f("%d번 글이 수정되었습니다.", id), Ut.f("../article/detail?id=%d", id));
 	}
 
+	
+	/* 게시글 등록 page */
 	@RequestMapping("/usr/article/write")
 	public String showWrite(HttpServletRequest req, Model model) {
 		return "usr/article/write";
 	}
 
+	/* 게시글 등록 ProcessingUrl */
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
 	public String doWrite(int boardId, String title, String body, String replaceUri) {

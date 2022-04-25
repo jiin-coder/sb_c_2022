@@ -25,6 +25,7 @@ public class UsrReplyController {
 		this.rq = rq;
 	}
 
+	/* 댓글 수정 page */
 	@RequestMapping("/usr/reply/modify")
 	public String modify(int id, String replaceUri, Model model) {
 		if (Ut.empty(id)) {
@@ -55,6 +56,7 @@ public class UsrReplyController {
 		return "usr/reply/modify";
 	}
 	
+	/* 댓글 수정 ProcessingUrl */
 	@RequestMapping("/usr/reply/doModify")
 	@ResponseBody
 	public String doModify(int id, String body, String replaceUri) {
@@ -93,6 +95,7 @@ public class UsrReplyController {
 		return rq.jsReplace(modifyReplyRd.getMsg(), replaceUri);
 	}
 	
+	/* 댓글 수정 ProcessingUrl */
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody
 	public String doWrite(String relTypeCode, int relId, String body, String replaceUri) {
@@ -122,6 +125,7 @@ public class UsrReplyController {
 		return rq.jsReplace(writeReplyRd.getMsg(), replaceUri);
 	}
 	
+	/* 댓글 삭제 ProcessingUrl */
 	@RequestMapping("/usr/reply/doDelete")
 	@ResponseBody
 	public String doDelete(int id, String replaceUri) {

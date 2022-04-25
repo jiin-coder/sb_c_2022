@@ -14,10 +14,13 @@ import com.kja.exam.demo.vo.Rq;
 public class BeforeActionInterceptor implements HandlerInterceptor {
 	private Rq rq;
 	
+	 /* 프로그램 실행 시 rq 생성 */
 	public BeforeActionInterceptor(Rq rq) {
 		this.rq = rq;
 	}
 	
+	
+	/* 컨트롤러 호출 전 실행 */
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		req.setAttribute("rq", rq);

@@ -17,32 +17,34 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 	BeforeActionInterceptor beforeActionInterceptor;
 
 	// NeedLoginInterceptor 인터셉터 불러오기
-		@Autowired
-		NeedLoginInterceptor needLoginInterceptor;
+	@Autowired
+	NeedLoginInterceptor needLoginInterceptor;
 
 	// needLogoutInterceptor 인터셉터 불러오기
 	@Autowired
 	NeedLogoutInterceptor needLogoutInterceptor;
-		
+
 	// 이 함수는 인터셉터를 적용하는 역할을 합니다.
+	// addInterceptor : 등록할 인터셉터 설정
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		InterceptorRegistration ir;
-
+		
 		ir = registry.addInterceptor(beforeActionInterceptor);
 		ir.addPathPatterns("/**");
 		ir.excludePathPatterns("/favicon.ico");
 		ir.excludePathPatterns("/resource/**");
 		ir.excludePathPatterns("/error");
-		
+
 		ir = registry.addInterceptor(needLoginInterceptor);
 		ir.addPathPatterns("/usr/member/modify");
 		ir.addPathPatterns("/usr/member/doModify");
 		ir.addPathPatterns("/usr/reply/modify");
 		ir.addPathPatterns("/usr/reply/doModify");
 		ir.addPathPatterns("/usr/reply/doWrite");
-		ir.addPathPatterns("/usr/reply/doDelete");;
+		ir.addPathPatterns("/usr/reply/doDelete");
 		
+
 		ir.addPathPatterns("/usr/article/write");
 		ir.addPathPatterns("/usr/article/doWrite");
 		ir.addPathPatterns("/usr/article/modify");
@@ -52,7 +54,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/reactionPoint/doBadReaction");
 		ir.addPathPatterns("/usr/reactionPoint/doCancelGoodReaction");
 		ir.addPathPatterns("/usr/reactionPoint/doCancelBadReaction");
-		
+
 		ir = registry.addInterceptor(needLogoutInterceptor);
 		ir.addPathPatterns("/usr/member/join");
 		ir.addPathPatterns("/usr/member/getLoginIdDup");

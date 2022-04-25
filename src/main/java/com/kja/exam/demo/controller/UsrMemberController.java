@@ -21,6 +21,7 @@ public class UsrMemberController {
 		this.rq = rq;
 	}
 
+	/* 회원가입 시 id 중복체크 */
 	@RequestMapping("/usr/member/getLoginIdDup")
 	@ResponseBody
 	public ResultData getLoginIdDup(String loginId) {
@@ -37,6 +38,7 @@ public class UsrMemberController {
 		return ResultData.from("S-1", "사용가능한 로그인아이디 입니다.", "loginId", loginId);
 	}
 	
+	/* 회원가입 시 ProcessingUrl */
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNo,
@@ -78,24 +80,13 @@ public class UsrMemberController {
 	}
 	// http://localhost:8011/usr/member/doJoin?loginId=fpahstiq123&loginPw=sbs123414&name=%EB%B0%95%EC%84%B1%ED%99%94&nickname=%EB%B3%84%EC%9D%B4&cellphoneNo=01020181024&email=fpahstiq123@naver.com
 
-	@RequestMapping("/usr/member/doLogout")
-	@ResponseBody
-	public String doLogout(@RequestParam(defaultValue = "/") String afterLogoutUri) {
-		rq.logout();
-
-		return rq.jsReplace("로그아웃 되었습니다.", afterLogoutUri);
-	}
-
-	@RequestMapping("/usr/member/login")
-	public String showLogin() {
-		return "usr/member/login";
-	} 
-
+	/* 회원가입 시 page */
 	@RequestMapping("/usr/member/join")
 	public String showJoin() {
 		return "usr/member/join";
 	}
 	
+	/* 로그인 시 ProcessingUrl */ 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(String loginId, String loginPw, @RequestParam(defaultValue = "/") String afterLoginUri) {
@@ -124,16 +115,28 @@ public class UsrMemberController {
 	}
 	// http://localhost:8011/usr/member/doLogin?loginId=user1&loginPw=user1
 	
+	/* 로그인 시 page */
+	@RequestMapping("/usr/member/login")
+	public String showLogin() {
+		return "usr/member/login";
+	} 
+	
+	/* 로그아웃 시 ProcessingUrl */
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public String doLogout(@RequestParam(defaultValue = "/") String afterLogoutUri) {
+		rq.logout();
+
+		return rq.jsReplace("로그아웃 되었습니다.", afterLogoutUri);
+	}
+	
+	/* 마이페이지 page */
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage() {
 		return "usr/member/myPage";
 	}
 	
-	@RequestMapping("/usr/member/checkPassword")
-	public String showCheckPassword() {
-		return "usr/member/checkPassword";
-	}
-	
+	/* 회원정보 수정 전 비밀번호 확인 ProcessingUrl */
 	@RequestMapping("/usr/member/doCheckPassword")
 	@ResponseBody
 	public String doCheckPassword(String loginPw, String replaceUri) {
@@ -154,6 +157,13 @@ public class UsrMemberController {
 		return rq.jsReplace("", replaceUri);
 	}
 	
+	/* 회원정보 수정 전 비밀번호 확인 page */
+	@RequestMapping("/usr/member/checkPassword")
+	public String showCheckPassword() {
+		return "usr/member/checkPassword";
+	}
+	
+	/* url에 회원정보 수정인증키 발급 후 수정페이지로 이동 */
 	@RequestMapping("/usr/member/modify")
 	public String showModify(String memberModifyAuthKey) {
 		if ( Ut.empty(memberModifyAuthKey)) {
@@ -168,6 +178,7 @@ public class UsrMemberController {
 		return "usr/member/modify";
 	}
 
+	/* 회원정보 수정 ProcessingUrl */
 	@RequestMapping("/usr/member/doModify")
 	@ResponseBody
 	public String doModify(String memberModifyAuthKey, String loginPw, String name, String nickname, String email, String cellphoneNo) {

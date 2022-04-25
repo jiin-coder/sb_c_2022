@@ -14,6 +14,7 @@ public interface ArticleRepository {
 	public void writeArticle(@Param("memberId") int memberId, @Param("boardId") int boardId,
 			@Param("title") String title, @Param("body") String body);
 
+	/* 게시글 가져오기 */
 	@Select("""
 			<script>
 			SELECT A.*,
@@ -27,6 +28,7 @@ public interface ArticleRepository {
 			""")
 	public Article getForPrintArticle(@Param("id") int id);
 
+	/* 게시글 삭제 */
 	public void deleteArticle(@Param("id") int id);
 
 	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);

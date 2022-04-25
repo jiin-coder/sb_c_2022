@@ -9,6 +9,8 @@ import com.kja.exam.demo.vo.Member;
 
 @Mapper
 public interface MemberRepository {
+	
+	/* 회원가입 */
 	@Insert("""
 			INSERT INTO `member`
 			SET regDate = NOW(),
@@ -23,10 +25,11 @@ public interface MemberRepository {
 	void join(@Param("loginId") String loginId, @Param("loginPw") String loginPw, @Param("name") String name,
 			@Param("nickname") String nickname, @Param("cellphoneNo") String cellphoneNo, @Param("email") String email);
 	
+	
 	@Select("SELECT LAST_INSERT_ID()")
 	int getLastInsertId();
 	
-	
+	/* id로 회원 탐색 */
 	@Select("""
 			SELECT *
 			FROM `member` AS M
@@ -34,6 +37,7 @@ public interface MemberRepository {
 			""")
 	Member getMemberById(@Param("id") int id);
 
+	/* 로그인id로 회원 탐색 */
 	@Select("""
 			SELECT *
 			FROM `member` AS M
@@ -41,7 +45,7 @@ public interface MemberRepository {
 			""")
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
-	
+	/* 이름과 이메일로 회원 탐색 */
 	@Select("""
 			SELECT *
 			FROM `member` AS M
@@ -51,6 +55,7 @@ public interface MemberRepository {
 			""")
 	Member getMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
 	
+	/* 회원정보 수정*/
 	@Select("""
 			<script>
 			UPDATE `member`

@@ -18,6 +18,7 @@ public class UsrReactionPointController {
 		this.rq = rq;
 	}
 
+	/* 좋아요 ProcessingUrl */
 	@RequestMapping("/usr/reactionPoint/doGoodReaction")
 	@ResponseBody
 	String doGoodReaction(String relTypeCode, int relId, String replaceUri) {
@@ -33,6 +34,7 @@ public class UsrReactionPointController {
 		return rq.jsReplace(addGoodReactionPointRd.getMsg(), replaceUri);
 	}
 	
+	/* 싫어요 ProcessingUrl */
 	@RequestMapping("/usr/reactionPoint/doBadReaction")
 	@ResponseBody
 	String doBadReaction(String relTypeCode, int relId, String replaceUri) {
@@ -48,6 +50,7 @@ public class UsrReactionPointController {
 		return rq.jsReplace(addBadReactionPointRd.getMsg(), replaceUri);
 	}
 	
+	/* 좋아요 취소 ProcessingUrl */
 	@RequestMapping("/usr/reactionPoint/doCancelGoodReaction")
 	@ResponseBody
 	String doCancelGoodReaction(String relTypeCode, int relId, String replaceUri) {
@@ -63,6 +66,7 @@ public class UsrReactionPointController {
 		return rq.jsReplace(deleteGoodReactionPointRd.getMsg(), replaceUri);
 	}
 	
+	/* 싫어요 ProcessingUrl */
 	@RequestMapping("/usr/reactionPoint/doCancelBadReaction")
 	@ResponseBody
 	String doCancelBadReaction(String relTypeCode, int relId, String replaceUri) {

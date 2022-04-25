@@ -12,6 +12,8 @@ import com.kja.exam.demo.vo.Reply;
 
 @Mapper
 public interface ReplyRepository {
+	
+	/* 댓글 생성 */
 	@Insert("""
 			INSERT INTO reply
 			SET regDate = NOW(),
@@ -28,6 +30,7 @@ public interface ReplyRepository {
 			""")
 	int getLastInsertId();
 
+	/* 댓글리스트 불러오기 */
 	@Select("""
 			SELECT R.*,
 			M.nickname AS extra__writerName
@@ -40,6 +43,7 @@ public interface ReplyRepository {
 			""")
 	List<Reply> getForPrintReplies(String relTypeCode, int relId);
 	
+	/* 업데이트된 댓글 불러오기*/
 	@Select("""
 			SELECT R.*,
 			M.nickname AS extra__writerName
@@ -50,6 +54,7 @@ public interface ReplyRepository {
 			""")
 	Reply getForPrintReply(int id);
 
+	/* 댓글 불러오기*/
 	@Select("""
 			SELECT R.*
 			FROM reply AS R
